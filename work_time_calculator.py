@@ -12,7 +12,10 @@ Work Time Calculator (Daily) - Tkinter GUI
   even if there is no open interval row. (Totals still depend on entered intervals.)
 
 Run:
-  python work_time_calculator.py
+  Windows: python work_time_calculator.py
+  Linux:   python3 work_time_calculator.py
+
+Tkinter is required (install python3-tk on Linux).
 """
 
 from __future__ import annotations
@@ -480,25 +483,34 @@ class GuiController:
         menubar.add_cascade(label="Help", menu=helpmenu)
 
         help_text = (
-            "Shortcuts:\n"
-            "  F5            – Recalculate\n"
-            "  Ctrl+N        – Add Row\n"
-            "  Delete        – Remove Selected Rows\n"
-            "  Ctrl+S        – Sort by Start\n"
-            "  Ctrl+E        – End = Now for Selected Rows\n"
-            "  Ctrl+C        – Copy Summary\n"
-            "  Esc           – Quit\n\n"
-            "Time formats accepted:\n"
-            "  9, 9:15, 9:15:30, 9 AM, 9:15 pm, 21:07, 21:07:33\n\n"
+            "Work Time Calculator (Daily)\n\n"
+            "Features:\n"
+            "  - Track multiple work intervals (one open interval allowed)\n"
+            "  - Live clock, totals, progress, and milestone projections\n"
+            "  - Copy a plain-text summary to the clipboard\n\n"
+            "Inputs:\n"
+            "  Date: today (read-only)\n"
+            "  Target: expected daily duration. Formats: H, H:MM, H:MM:SS\n"
+            "  Start: interval start time (e.g., 9, 09:15, 9:15 am, 21:07)\n"
+            "  End: interval end time. Leave blank for an open interval\n"
+            "  Select: checkbox used by Remove/End Now actions\n\n"
+            "Outputs:\n"
+            "  Worked: total time across intervals (open uses current time)\n"
+            "  Remaining: time left to reach Target (never below 00:00:00)\n"
+            "  Overtime: time beyond Target (never below 00:00:00)\n"
+            "  Progress: percent of Target completed\n"
+            "  Milestone: projected clock time to reach Target/next overtime hour\n"
+            "  Notes: validation status for each row\n\n"
             "Rules:\n"
-            "  • Only one open interval (End blank) is allowed.\n"
-            "  • End must be after Start; cross-midnight intervals are rejected.\n"
-            "  • Intervals must not overlap; touching is fine.\n\n"
-            "Milestones:\n"
-            "  The app assumes you are working if you are checking it.\n"
-            "  Milestone clock times are computed as NOW + remaining time."
+            "  - End must be after Start on the same day (no cross-midnight)\n"
+            "  - Intervals may not overlap\n"
+            "  - Only one open interval is allowed\n"
+            "  - Milestones assume you are working when you check the app\n\n"
+            "Shortcuts:\n"
+            "  F5 Recalculate, Ctrl+N Add Row, Delete Remove Selected,\n"
+            "  Ctrl+E End = Now, Ctrl+S Sort, Ctrl+C Copy Summary, Esc Quit"
         )
-        helpmenu.add_command(label="Usage & Shortcuts", command=lambda: messagebox.showinfo("Help", help_text))
+        helpmenu.add_command(label="Help and Usage", command=lambda: messagebox.showinfo("Help", help_text))
 
     def _tick_clock(self):
         now_dt = datetime.now().replace(microsecond=0)
