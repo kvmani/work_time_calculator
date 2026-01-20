@@ -1,0 +1,2 @@
+Place a multi-size Windows .ico file here as assets\app.ico.
+Example sizes: 16x16, 32x32, 48x48, 256x256.

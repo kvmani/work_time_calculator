@@ -1,0 +1,7 @@
+PLACEHOLDER LICENSE TEXT
+
+Replace this placeholder with the full official license text.
+
+Paste the complete text of ONE of the following, exactly as published:
+- GNU General Public License v3 (GPLv3)
+- GNU Lesser General Public License v3 (LGPLv3)
